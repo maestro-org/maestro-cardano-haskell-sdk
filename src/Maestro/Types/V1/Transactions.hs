@@ -94,7 +94,7 @@ data TxDetails = TxDetails
   -- ^ UNIX timestamp of the block which includes the transaction
   , txDetailsBlockTxIndex :: !Natural
   -- ^ The transaction's position within the block which includes it
-  , txDetailsDeposit :: !Word64
+  , txDetailsDeposit :: !Integer
   -- ^ The amount of lovelace used for deposits (negative if being returned)
   , txDetailsFee :: !Word64
   -- ^ The fee specified in the transaction
