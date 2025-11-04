@@ -1,5 +1,9 @@
 # Revision history for `maestro-sdk`
 
+## [1.7.7](https://github.com/maestro-org/haskell-sdk/compare/v1.7.7..v1.7.6) -- 2025-11-04
+
+* `txDetailsDeposit` field of `TxDetails` is now an `Integer` to allow for negative values which represents lovelaces being returned to the user.
+
 ## [1.7.6](https://github.com/maestro-org/haskell-sdk/compare/v1.7.6..v1.7.5)
 
 * Added `assetUTxOs` to query for UTxOs containing a particular asset.
