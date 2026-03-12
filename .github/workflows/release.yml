@@ -8,6 +8,9 @@ on:
 permissions:
     contents: write
 
+env:
+    FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
+
 jobs:
     build:
         uses: ./.github/workflows/haskell.yml
@@ -16,13 +19,13 @@ jobs:
         needs: build
         steps:
             - name: Checkout source code
-              uses: actions/checkout@v3
-            - uses: actions/download-artifact@v4
+              uses: actions/checkout@v6
+            - uses: actions/download-artifact@v8
               name: Download source distribution file artifact
               with:
                   name: source-distribution-file
                   path: ./artifacts
-            - uses: actions/download-artifact@v4
+            - uses: actions/download-artifact@v8
               name: Download haddock artifact
               with:
                   name: github-pages
@@ -53,7 +56,7 @@ jobs:
                     "./artifacts/${HADDOCK_FILE}#Haddock (tar)"
                   echo "::notice::Succesfully created release draft ${SEMANTIC_VERSION} from ${GIT_REVISION}. (Uploaded: ${{ env.MAESTRO_SDK_VERSION }}.tar.gz)"
             - name: Setup haskell tooling
-              uses: haskell/actions/setup@v2
+              uses: haskell-actions/setup@v2
               with:
                   ghc-version: "8.10.7"
                   cabal-version: "3.8"
