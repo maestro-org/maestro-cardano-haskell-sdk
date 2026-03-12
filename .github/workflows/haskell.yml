@@ -105,10 +105,14 @@ jobs:
                   echo "MAESTRO_SDK_VERSION=${MAESTRO_SDK_VERSION}" >> $GITHUB_OUTPUT
             - name: Generate documentation (cabal haddock)
               run: cabal haddock --html --hyperlink-source --haddock-options="--use-unicode"
+            - name: Package haddock documentation
+              run: |
+                  tar -C ./dist-newstyle/build/x86_64-linux/ghc-8.10.7/${{ env.MAESTRO_SDK_VERSION }}/doc/html/maestro-sdk -cf "$RUNNER_TEMP/artifact.tar" .
             - name: Upload haddock documentation
-              uses: actions/upload-pages-artifact@v4
+              uses: actions/upload-artifact@v7
               with:
-                  path: ./dist-newstyle/build/x86_64-linux/ghc-8.10.7/${{env.MAESTRO_SDK_VERSION}}/doc/html/maestro-sdk/
+                  name: github-pages
+                  path: ${{ runner.temp }}/artifact.tar
             - name: Upload artifacts
               uses: actions/upload-artifact@v7
               with:
