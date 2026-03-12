@@ -18,7 +18,7 @@ jobs:
             MAESTRO_SDK_VERSION: ${{ steps.get_maestro_sdk_version.outputs.MAESTRO_SDK_VERSION }}
         steps:
             - name: Checkout source code
-              uses: actions/checkout@v3
+              uses: actions/checkout@v6
             - name: Install dependencies (apt-get)
               run: |
                   sudo apt-get update
@@ -58,7 +58,7 @@ jobs:
                   enable-stack: true
                   stack-version: "2.9"
             - name: Setup cache
-              uses: actions/cache@v3
+              uses: actions/cache@v5
               env:
                   cache-name: cache-cabal
               with:
@@ -107,7 +107,7 @@ jobs:
               with:
                   path: ./dist-newstyle/build/x86_64-linux/ghc-8.10.7/${{env.MAESTRO_SDK_VERSION}}/doc/html/maestro-sdk/
             - name: Upload artifacts
-              uses: actions/upload-artifact@v4
+              uses: actions/upload-artifact@v7
               with:
                   name: source-distribution-file
                   path: ./dist-newstyle/sdist/${{env.MAESTRO_SDK_VERSION}}.tar.gz

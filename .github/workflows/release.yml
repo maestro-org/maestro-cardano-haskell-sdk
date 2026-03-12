@@ -16,13 +16,13 @@ jobs:
         needs: build
         steps:
             - name: Checkout source code
-              uses: actions/checkout@v3
-            - uses: actions/download-artifact@v4
+              uses: actions/checkout@v6
+            - uses: actions/download-artifact@v8
               name: Download source distribution file artifact
               with:
                   name: source-distribution-file
                   path: ./artifacts
-            - uses: actions/download-artifact@v4
+            - uses: actions/download-artifact@v8
               name: Download haddock artifact
               with:
                   name: github-pages
